@@ -30,7 +30,7 @@ export default function ListOfPosts({allPosts=[] , refreshPosts}) {
   const listOfPosts = allPosts.map((post) => {
     if (allPosts.length > 0){
       return (
-      <PostCard key={post.id} post={post} />
+      <PostCard refreshPosts={refreshPosts} key={post.id} post={post} />
     )}else{
       return (
         <h3>There are no posts at the moment, be the first to make one!</h3>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fetchHelper from '../helpers/fetchHelper';
 import ListOfPosts from '../atoms/ListOfPosts';
+import Navbar from '../atoms/Navbar';
 
 export default function Home() {
   const [allPosts, setAllPosts] = useState([]);
@@ -12,13 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     getAllPosts();
-  }, [allPosts]);
-
-
+  }, []);
 
   return (
-    <div className='flex flex-col items-center min-h-screen px-4 md:px-0 py-10 md:py-20 bg-gray-200'>
+    <div className='flex flex-col relative items-center min-h-screen px-4 md:px-0 py-10 pb-30 md:py-20 md:pb-40 bg-gray-200'>
       <ListOfPosts refreshPosts={getAllPosts} allPosts={allPosts}/>
+      <Navbar />
     </div>
   )
 }

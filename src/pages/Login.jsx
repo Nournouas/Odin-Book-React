@@ -17,7 +17,8 @@ export default function Login() {
     const result = await fetchHelper("http://localhost:3000/auth/login", "POST", {email, password}, false);
     setLoading(false);
     if (!result.errors){
-      localStorage.setItem("token", result.token)
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("userID", result.id);
       navigate("/home");
     }else{
       
