@@ -15,6 +15,23 @@ export default function PostCard({post, refreshPosts}) {
   const userID = localStorage.getItem("userID");
   const isMyPost = userID == post.author.id
 
+  const handleDeletePost = async(e) => {
+    e.preventDefault();
+    setLoading(true);
+    const postID = post.id;
+    const result = await fetchHelper(`http://localhost:3000/post/${postID}`, "DELETE", {}, true);
+    setLoading(false);
+    if (!result.errors){
+      refreshPosts();
+    }else{
+      const errorsObj = result.errors.reduce((acc, err) => {
+        acc[err.path] = err.msg;
+        return acc
+      }, {});
+      setErrors(errorsObj);
+    }
+  }
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -41,7 +58,7 @@ export default function PostCard({post, refreshPosts}) {
     <div className='flex flex-col gap-2 p-4 bg-white rounded-xl'>
       <div className='w-full flex flex-row justify-between'>
         <h2 className='font-bold text-xl'>{post.title}</h2>
-        {isMyPost && <button onClick={() => console.log("deleted")} className='text-red-950 cursor-pointer hover:text-red-800'>{deleteIcn}</button>}
+        {isMyPost && <button onClick={handleDeletePost} className='text-red-950 cursor-pointer hover:text-red-800'>{deleteIcn}</button>}
       </div>
 
       <div>
