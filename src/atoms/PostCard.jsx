@@ -7,6 +7,7 @@ import CommentForm from './forms/CommentForm';
 import { ClipLoader } from "react-spinners";
 import fetchHelper from '../helpers/fetchHelper';
 import { deleteIcn } from '../helpers/HeroIcons';
+import { Link } from 'react-router';
 
 export default function PostCard({post, refreshPosts}) {
   const [showComments, setShowComments] = useState(false);
@@ -31,7 +32,6 @@ export default function PostCard({post, refreshPosts}) {
       setErrors(errorsObj);
     }
   }
-
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -62,7 +62,9 @@ export default function PostCard({post, refreshPosts}) {
       </div>
 
       <div>
-        <h3 className='text-xs font-semibold'>{post.author.name}</h3>
+        <Link to={post.author.id == userID ? `/profile` : `/profile/${post.author.id}`}>
+          <h3 className='text-xs font-semibold hover:underline'>{post.author.name}</h3>
+        </Link>
         <DateText date={ISOtoReadable(post.createdAt)} />
       </div>
       <Divider />
@@ -89,7 +91,7 @@ export default function PostCard({post, refreshPosts}) {
             : <CommentForm handleCommentSubmit={handleCommentSubmit} errors={errors}/>
           }
         
-        <Comments comments={post.comments}/>
+        <Comments refreshPosts={refreshPosts} comments={post.comments}/>
       </div>
       }
     </div>

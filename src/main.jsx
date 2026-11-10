@@ -6,6 +6,10 @@ import './styles.css'
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import OtherProfile from "./pages/OtherProfile";
+import Following from "./pages/Following";
+import Followers from "./pages/Followers";
 
 const root = document.getElementById("root");
 
@@ -16,6 +20,10 @@ ReactDOM.createRoot(root).render(
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/:profileID" element={<OtherProfile />} />
+      <Route path="/following" element={<Following />} />
+      <Route path="/followers" element={<Followers />} />
     </Routes>
   </BrowserRouter>,
 );

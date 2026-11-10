@@ -5,7 +5,7 @@ import Divider from './Divider';
 import fetchHelper from '../helpers/fetchHelper';
 import { ClipLoader } from "react-spinners";
 
-export default function ListOfPosts({allPosts=[] , refreshPosts}) {
+export default function ListOfPosts({allPosts=[] , refreshPosts, showForm=true}) {
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +47,7 @@ export default function ListOfPosts({allPosts=[] , refreshPosts}) {
           size={150}
           aria-label="Loading Spinner"
           data-testid="loader"/> 
-      : <PostForm errors={errors} handleSubmit={handleSubmitPost} />
+      : <>{showForm && <PostForm errors={errors} handleSubmit={handleSubmitPost}/>}</> 
       }
       
       <Divider />
