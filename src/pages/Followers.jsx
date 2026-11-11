@@ -5,7 +5,7 @@ import fetchHelper from '../helpers/fetchHelper';
 import ListOfUsers from '../atoms/ListOfUsers';
 
 export default function Followers() {
-  const [following, setFollowing] = useState();
+  const [followers, setFollowers] = useState();
   const [loading, setLoading] = useState(true);
   const userID = localStorage.getItem("userID");
 
@@ -13,7 +13,7 @@ export default function Followers() {
     setLoading(true);
     const result = await fetchHelper(`http://localhost:3000/user/${userID}/followers`, "GET", {}, true);
     console.log(result)
-    setFollowing(result.followers);
+    setFollowers(result.followers);
     setLoading(false);
   }
 
@@ -32,7 +32,7 @@ export default function Followers() {
                 size={150}
                 aria-label="Loading Spinner"
                 data-testid="loader"/> 
-            : <ListOfUsers followers={true} usersList={following}/>
+            : <ListOfUsers followers={true} usersList={followers}/>
             }
       <Navbar />
     </div>

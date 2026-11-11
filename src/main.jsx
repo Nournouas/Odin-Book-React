@@ -10,6 +10,9 @@ import Profile from "./pages/Profile";
 import OtherProfile from "./pages/OtherProfile";
 import Following from "./pages/Following";
 import Followers from "./pages/Followers";
+import Logout from "./pages/Logout";
+import Friends from "./pages/Friends";
+import Search from "./pages/Search";
 
 const root = document.getElementById("root");
 
@@ -24,6 +27,9 @@ ReactDOM.createRoot(root).render(
       <Route path="/profile/:profileID" element={<OtherProfile />} />
       <Route path="/following" element={<Following />} />
       <Route path="/followers" element={<Followers />} />
+      <Route path="/logout" element={<Logout />} />
+      <Route path="/followingPosts" element={<Friends />} />
+      <Route path="/search" element={<Search />} />
     </Routes>
   </BrowserRouter>,
 );
